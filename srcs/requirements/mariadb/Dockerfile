@@ -11,4 +11,5 @@ COPY conf/mariadb.conf /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN mkdir -p /etc/scripts
 
 COPY ./tools/datasetup.sh /etc/scripts
-# CMD ["./datasetup.sh"]
+RUN chmod 775 etc/scripts/datasetup.sh
+RUN sh etc/scripts/datasetup.sh
