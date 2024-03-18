@@ -1,18 +1,18 @@
-FROM debian:buster
+FROM alpine:3.17.5
 
-RUN apt update && apt upgrade -y && \
-    apt install mariadb-server -y
+RUN apk update &&  apk add mysql && apk add mysql-client
 
-RUN apt install vim -y
-RUN apt install curl -y
 
-COPY conf/mariadb.conf /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN mkdir /run/mysqld
+#COPY conf/mariadb.conf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-RUN mkdir -p /etc/scripts
-RUN mkdir -p /run/mysqld
-RUN chown mysql:mysql /run/mysqld
+#RUN mkdir -p /etc/scripts
+#RUN mkdir -p /run/mysqld
+#RUN chown mysql:mysql /run/mysqld
 
-COPY ./tools/datasetup.sh /etc/scripts
-RUN chmod 775 etc/scripts/datasetup.sh
+COPY ./tools/datasetup.sh /usr/local/bin/
+#RUN chmod 775 etc/scripts/datasetup.sh
 
-CMD [ "sh", "etc/scripts/datasetup.sh" ]
+EXPOSE 3306
+
+ENTRYPOINT [ "/bin/sh", "/usr/local/bin/datasetup.sh" ]

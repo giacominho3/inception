@@ -7,13 +7,13 @@
 
 // ** MySQL settings ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', getenv('MY_DATABASE') );
+define( 'DB_NAME', 'mydb');
 
 /** MySQL database username */
-define( 'DB_USER', getenv('DB_USER') );
+define( 'DB_USER', 'gifulvi');
 
 /** MySQL database password */
-define( 'DB_PASSWORD', getenv('DB_PASS') );
+define( 'DB_PASSWORD', 30101998);
 
 /** MySQL hostname */
 define( 'DB_HOST', 'mariadb:3306' );
@@ -54,3 +54,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
+?>
